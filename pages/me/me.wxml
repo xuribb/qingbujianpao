@@ -1,0 +1,36 @@
+<view class="page_me">
+  <view class="header">
+    <view class="header_left">
+      <image src="{{userInfo.avatarUrl}}" />
+      <view>
+        <text>{{userInfo.nickName}}</text>
+        <text class="level">新人</text>
+      </view>
+    </view>
+    <image class="header_right" src="/static/me/setting.png"/>
+  </view>
+  <view class="main">
+    <view class="main_item">
+      <view>
+        <image class="main_item_logo" src="/static/me/bijijilu.png"/>
+        <text>记录</text>
+      </view>
+      <image class="main_item_tou" src="/static/me/jiantou.png"/>
+    </view>
+    <view class="main_item">
+      <view>
+        <image class="main_item_logo" src="/static/me/guanyu.png"/>
+        <text>关于</text>
+      </view>
+      <image class="main_item_tou" src="/static/me/jiantou.png"/>
+    </view>
+    <view class="main_item">
+      <view>
+        <image class="main_item_logo" src="/static/me/juanzeng.png"/>
+        <text>捐赠</text>
+      </view>
+      <image class="main_item_tou" src="/static/me/jiantou.png"/>
+    </view>
+  </view>
+  <view class="footer">心中有信仰 前路不迷茫</view>
+</view>

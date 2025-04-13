@@ -1,0 +1,2 @@
+<map style="height: {{height}}px;" id="map" longitude="{{polyline[0].points[0].longitude}}" latitude="{{polyline[0].points[0].latitude}}" show-location polyline="{{polyline}}">
+</map>
