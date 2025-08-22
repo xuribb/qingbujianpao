@@ -1,3 +1,3 @@
-<view class="page_homne">
-  
+<view class="homne">
+  <map class="map" longitude="108.31343" latitude="22.83393"/>
 </view>

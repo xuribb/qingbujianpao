@@ -1,15 +1,5 @@
-<view class="container">
-  <view class="userinfo">
-    <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-      <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
-    </button>
-    <view class="nickname-wrapper">
-      <text class="nickname-label">昵称</text>
-      <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" />
-    </view>
-  </view>
-  <button type="primary" class="register" bind:tap="onRegister">注册</button>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+<view class="login">
+  <image class="bg" src="/static/login_bg.png" mode=""/>
+  <view class="loginBtn" bind:tap="toLogin">登录</view>
+  <text class="usermotto">{{motto}}</text>
 </view>
