@@ -1,5 +1,0 @@
-<view class="login">
-  <image class="bg" src="/static/login_bg.png" mode=""/>
-  <view class="loginBtn" bind:tap="toLogin">登录</view>
-  <text class="usermotto">{{motto}}</text>
-</view>

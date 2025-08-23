@@ -1,3 +1,7 @@
 <view class="homne">
-  <map class="map" longitude="108.31343" latitude="22.83393"/>
+  <map class="map" longitude="{{longitude}}" latitude="{{latitude}}" show-location />
+  <view class="content">
+    <view class="content-box">开始跑步</view>
+    <view class="content-box">开始跑步</view>
+  </view>
 </view>
