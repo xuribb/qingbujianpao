@@ -1,7 +1,20 @@
 <view class="homne">
   <map class="map" longitude="{{longitude}}" latitude="{{latitude}}" show-location />
   <view class="content">
-    <view class="content-box">开始跑步</view>
-    <view class="content-box">开始跑步</view>
+    <view>
+      <view class="content-box content-1">
+        <view>{{city}}</view>
+        <image src="{{icon}}" mode="heightFix" style="height: 24px;" />
+      </view>
+      <view class="content-box content-2">
+        <view>{{adm1}} - {{adm2}} - {{city}}</view>
+        <view>天气：{{text}}</view>
+        <view>温度/体感温度：{{temp}}/{{feelsLike}}°C</view>
+        <view>风速：{{windDir}}/{{windScale}}级/{{windSpeed}}公里/小时</view>
+        <view>相对湿度：{{humidity}}%</view>
+        <view>云量：{{cloud}}%</view>
+      </view>
+    </view>
+    <view bind:tap="toRun" class="content-box start-run">开始跑步</view>
   </view>
 </view>

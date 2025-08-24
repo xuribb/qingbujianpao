@@ -1,0 +1,6 @@
+<view class="juanzeng">
+  <image src="{{wechat}}" mode="widthFix" show-menu-by-longpress/>
+  <text class="center">微信捐赠作者</text>
+  <image src="{{alipay}}" mode="widthFix" show-menu-by-longpress/>
+  <text>支付宝捐赠作者</text>
+</view>

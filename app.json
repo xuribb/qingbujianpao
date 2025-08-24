@@ -2,7 +2,10 @@
   "pages": [
     "pages/home/home",
     "pages/me/me",
-    "pages/run/run"
+    "pages/run/run",
+    "pages/juanzeng/juanzeng",
+    "pages/about/about",
+    "pages/record/record"
   ],
   "window": {
     "navigationBarTextStyle": "white",
@@ -37,6 +40,12 @@
   "permission": {
     "scope.userLocation": {
       "desc": "小程序将记录你的位置信息"
+    },
+    "scope.userLocationBackground": {
+      "desc": "小程序将记录你的位置信息"
     }
-  }
+  },
+  "requiredBackgroundModes": [
+    "location"
+  ]
 }

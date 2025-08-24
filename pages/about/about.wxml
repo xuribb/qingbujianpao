@@ -1,0 +1,11 @@
+<view class="about">
+  <view>本项目为开源项目</view>
+  <view class="title">GitHub地址：</view>
+  <view class="content">https://github.com/xuribb/qingbujianpao</view>
+  <view class="content">https://github.com/xuribb/qingbujianpao_back</view>
+  <view class="title">项目简介：</view>
+  <view class="content">1. 采用微信小程序原生开发，并没有使用市面上流行的uniapp开发。作者自己的理由是：本程序只在微信端运行，没有跨端的需求，其次开发过程中不用看两套开发文档(微信/uniapp)，开发过程的感受是很重要的，心理上没有那么累。</view>
+  <view class="content">2. 小程序后端采用ThinkPHP + MongoDB的方式开发。MongoDB作为文档型非关系数据库很适合用来存储用户的运动记录。使用微信提供的openid做为用户唯一标识。</view>
+  <view class="content">3. 本程序使用的第三方接口:【和风天气API】</view>
+  <view class="title">欢迎评论留言，提建议~</view>
+</view>

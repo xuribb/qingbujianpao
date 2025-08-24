@@ -15,6 +15,7 @@ page {
   background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 20px 0;
 }
 
@@ -24,4 +25,24 @@ page {
   margin: 10px 20px;
   padding: 20px;
   box-shadow: 0 0 3px #FFF;
+}
+
+.content-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.content-2>view{
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+.start-run {
+  margin-bottom: 40px;
+  border-radius: 20px;
+  background-color: #16b777;
+  box-shadow: 0 0 3px #16b777;
+  text-align: center;
+  color: #FFF;
+  font-weight: bold;
 }
