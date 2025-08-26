@@ -1,3 +1,3 @@
 <view class="run">
-  <map class="map" longitude="{{longitude}}" latitude="{{latitude}}" show-location />
+  <map class="map" latitude="{{latitude}}" longitude="{{longitude}}" polyline="{{polyline}}" />
 </view>

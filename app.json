@@ -42,7 +42,7 @@
       "desc": "小程序将记录你的位置信息"
     },
     "scope.userLocationBackground": {
-      "desc": "小程序将记录你的位置信息"
+      "desc": "小程序将记录你的位置信息2"
     }
   },
   "requiredBackgroundModes": [
