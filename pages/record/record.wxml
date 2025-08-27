@@ -1,2 +1,4 @@
-<!--pages/record/record.wxml-->
-<text>pages/record/record.wxml</text>
+<view class="record" bind:tap="toMap">
+  <view class="item" wx:for="{{records}}" wx:key="_id" data-id="{{item._id}}">{{item.timestamp}}</view>
+  <view class="no-more">没有更多记录了~</view>
+</view>

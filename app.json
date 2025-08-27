@@ -5,7 +5,8 @@
     "pages/run/run",
     "pages/juanzeng/juanzeng",
     "pages/about/about",
-    "pages/record/record"
+    "pages/record/record",
+    "pages/map/map"
   ],
   "window": {
     "navigationBarTextStyle": "white",

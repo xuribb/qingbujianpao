@@ -1,3 +1,14 @@
 <view class="run">
-  <map class="map" latitude="{{latitude}}" longitude="{{longitude}}" polyline="{{polyline}}" />
+  <view class="contain-1">
+    <view>0.00</view>
+    <view class="txt">公里</view>
+    <view class="time">{{time}}</view>
+    <view class="txt">时长</view>
+    <view class="speed">00'00"</view>
+    <view class="txt">平均配速</view>
+  </view>
+  <view bind:tap="tap" bind:longpress="endRun" class="contain-2">
+  <view>{{isRunning?'暂停':'开始'}}</view>
+  <view>结束</view>
+  </view>
 </view>

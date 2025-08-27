@@ -1,66 +1,55 @@
-// pages/record/record.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    records: []
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  toMap(event) {
+    const _id = event.target.dataset.id;
+    if (_id) {
+      wx.navigateTo({
+        url: '/pages/map/map?_id=' + _id,
+      })
+    }
+  },
   onLoad(options) {
+    const app = getApp();
+    const {
+      domain,
+      openid
+    } = app.globalData;
 
+    wx.request({
+      url: domain + '/user/getLine',
+      method: "POST",
+      data: {
+        openid
+      },
+      success: res => {
+        if (res.data.code) {
+          res.data.data.forEach(item => {
+            item.timestamp = this.format(item.timestamp);
+          });
+          this.setData({
+            records: res.data.data
+          });
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'error'
+          });
+        }
+      }
+    });
   },
+  format(timestamp) {
+    const date = new Date(Number(timestamp + "000"));
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   }
 })

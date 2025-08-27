@@ -3,10 +3,42 @@ page {
 }
 
 .run {
-  height: 100%;
-}
-
-.map {
   width: 750rpx;
   height: 100%;
+  background-color: #363642;
+  display: flex;
+  color: #FFFFFF;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contain-1 {
+  margin-top: 60rpx;
+  text-align: center;
+  font-weight: bold;
+  font-size: 70px;
+}
+
+.txt {
+  font-weight: normal;
+  font-size: 14px;
+  color: #79787E;
+  margin-bottom: 30rpx;
+}
+
+.time,
+.speed {
+  font-size: 50px;
+}
+
+.contain-2 {
+  width: 160rpx;
+  height: 160rpx;
+  background-color: #16b777;
+  border-radius: 80rpx;
+  margin-bottom: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

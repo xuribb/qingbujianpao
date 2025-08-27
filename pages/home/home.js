@@ -30,6 +30,7 @@ Page({
         const location = `${this.data.longitude.toFixed(2)},${this.data.latitude.toFixed(2)}`;
         this.getWeather(location);
         this.getCity(location);
+        setTimeout(wx.hideLoading);
       }
     });
   },
@@ -70,6 +71,10 @@ Page({
     })
   },
   onLoad() {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    });
     const app = getApp();
     this.setData({
       domain: app.globalData.domain

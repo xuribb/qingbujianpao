@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {},
+  "navigationBarBackgroundColor": "#363642",
+  "navigationBarTitleText": "跑步中"
 }
