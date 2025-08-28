@@ -31,7 +31,6 @@ Page({
               borderWidth: 1
             }]
           }); 
-          
         } else {
           wx.showToast({
             title: res.data.msg,

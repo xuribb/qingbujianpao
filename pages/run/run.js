@@ -1,5 +1,6 @@
 Page({
   data: {
+    prepare: 3,
     time: "00:00:00",
     isRunning: false,
     timer: 0,
@@ -13,47 +14,70 @@ Page({
         timer: 0
       });
       wx.offLocationChange();
+      wx.stopLocationUpdate();
     } else {
-      const timer = setInterval(() => {
-        this.setData({
-          time: this.incrementTime(this.data.time)
-        });
-      }, 1000);
-      this.setData({
-        timer,
-        isRunning: true
-      });
+      wx.startLocationUpdateBackground({
+        success: () => {
+          const timer = setInterval(() => {
+            this.setData({
+              time: this.incrementTime(this.data.time)
+            });
+          }, 1000);
+          this.setData({
+            timer,
+            isRunning: true
+          });
 
-      wx.onLocationChange(res => {
-        const ary = this.data.points;
-        ary.push({
-          latitude: res.latitude,
-          longitude: res.longitude
-        });
-        this.setData({
-          points: ary
-        });
-        console.log('location change', res);
+          wx.onLocationChange(res => {
+            const ary = this.data.points;
+            ary.push({
+              latitude: res.latitude,
+              longitude: res.longitude
+            });
+            this.setData({
+              points: ary
+            });
+          });
+        },
+        fail: res => {
+          wx.showModal({
+            content: '需要位置权限才能使用此功能',
+            success: (res) => {
+              if (res.confirm) {
+                wx.openSetting();
+              }
+            }
+          });
+        }
       });
     }
   },
-  endRun() {
+  async endRun() {
+    const res = await wx.showModal({
+      content: '确定要停止运动？'
+    });
+    if (res.cancel) {
+      return;
+    }
+    if (this.data.points.length < 2) {
+      wx.showToast({
+        title: '本次运动标记不足，不汇入运动记录',
+        icon: "none",
+      });
+      return setTimeout(wx.switchTab, 1500, {
+        url: '/pages/home/home',
+      });
+    }
+
     const app = getApp();
     const {
       domain,
       openid
     } = app.globalData;
 
-    clearInterval(this.data.timer);
-    this.setData({
-      isRunning: false,
-      timer: 0
-    });
-    wx.offLocationChange();
-
     wx.request({
       url: domain + '/user/setLine',
-      method:"POST",
+      method: "POST",
       data: {
         openid,
         points: this.data.points
@@ -97,35 +121,16 @@ Page({
     const format = (num) => num.toString().padStart(2, '0');
     return `${format(hours)}:${format(minutes)}:${format(seconds)}`;
   },
-
   onLoad() {
     const timer = setInterval(() => {
+      const tmp = this.data.prepare - 1;
+      if (!tmp) {
+        clearInterval(timer);
+        this.tap();
+      }
       this.setData({
-        time: this.incrementTime(this.data.time)
+        prepare: tmp
       });
     }, 1000);
-
-    this.setData({
-      timer,
-      isRunning: true
-    });
-
-    wx.onLocationChange(res => {
-      const ary = this.data.points;
-      ary.push({
-        latitude: res.latitude,
-        longitude: res.longitude
-      });
-      this.setData({
-        points: ary
-      });
-      console.log('location change', res);
-    });
-
-    wx.startLocationUpdateBackground({
-      complete: res => {
-        console.log(res);
-      }
-    });
   }
 })

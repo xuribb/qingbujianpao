@@ -7,8 +7,11 @@
     <view class="speed">00'00"</view>
     <view class="txt">平均配速</view>
   </view>
-  <view bind:tap="tap" bind:longpress="endRun" class="contain-2">
-  <view>{{isRunning?'暂停':'开始'}}</view>
-  <view>结束</view>
+  <view class="contain-2">
+    <view class="startBtn" bind:tap="tap">{{isRunning?'暂停':'开始'}}</view>
+    <view class="endBtn" bind:tap="endRun" wx:if="{{!isRunning}}">结束</view>
   </view>
+</view>
+<view class="wrapper" wx:if="{{prepare}}">
+  <view>{{prepare}}</view>
 </view>

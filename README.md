@@ -16,9 +16,11 @@
 
 ## 项目配置
 
-`app.js` 中配置 `globalData.domain` 为自己后端域名。
-- 请使用https
-- 请在微信公众平台配置此域名
+1. `app.js` 中配置 `globalData.domain` 为自己后端域名。
+    - 请使用https
+    - 请在微信公众平台配置此域名
+
+2. 微信公众平台请完成startLocationUpdateBackground接口相关的API申请
 
 
 ## 欢迎评论留言，提建议~
