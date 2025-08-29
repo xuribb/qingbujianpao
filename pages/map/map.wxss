@@ -6,3 +6,34 @@ page {
   width: 750rpx;
   height: 100%;
 }
+
+.info {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+  width: 100%;
+  background-color: #16b777;
+  border-radius: 40rpx 40rpx 0 0;
+  overflow: hidden;
+  padding: 30rpx 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info>view {
+  text-align: center;
+  width: 50%;
+}
+
+.data {
+  color: #FFFFFF;
+  font-size: 40rpx;
+  margin-bottom: 6rpx;
+}
+
+.intro {
+  font-size: 20rpx;
+  color: #DDDDDD;
+}

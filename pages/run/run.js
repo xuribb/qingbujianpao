@@ -4,6 +4,8 @@ Page({
     time: "00:00:00",
     isRunning: false,
     timer: 0,
+    distance: "0.000",
+    speed: "0.00",
     points: []
   },
   tap() {
@@ -19,8 +21,11 @@ Page({
       wx.startLocationUpdateBackground({
         success: () => {
           const timer = setInterval(() => {
+            let speed = this.data.distance * 1000 / this.timeStringToSeconds(this.data.time);
+            speed = isNaN(speed) ? Number(this.data.speed) : speed;
             this.setData({
-              time: this.incrementTime(this.data.time)
+              time: this.incrementTime(this.data.time),
+              speed: speed.toFixed(2)
             });
           }, 1000);
           this.setData({
@@ -30,12 +35,22 @@ Page({
 
           wx.onLocationChange(res => {
             const ary = this.data.points;
+
+            const last = ary.at(-1);
+            let distance = Number(this.data.distance) * 1000;
+            if (last) {
+              distance = this.calculateCloseDistance(last.latitude, last.longitude, res.latitude, res.longitude);
+              distance += Number(this.data.distance) * 1000;
+            }
+
             ary.push({
               latitude: res.latitude,
               longitude: res.longitude
             });
+
             this.setData({
-              points: ary
+              points: ary,
+              distance: (distance / 1000).toFixed(3)
             });
           });
         },
@@ -80,7 +95,9 @@ Page({
       method: "POST",
       data: {
         openid,
-        points: this.data.points
+        points: this.data.points,
+        distance: this.data.distance,
+        speed: this.data.speed
       },
       success: res => {
         if (res.data.code) {
@@ -95,6 +112,18 @@ Page({
         }
       }
     });
+  },
+  onLoad() {
+    const timer = setInterval(() => {
+      const tmp = this.data.prepare - 1;
+      if (!tmp) {
+        clearInterval(timer);
+        this.tap();
+      }
+      this.setData({
+        prepare: tmp
+      });
+    }, 1000);
   },
   incrementTime(timeStr) {
     const parts = timeStr.split(':');
@@ -121,16 +150,21 @@ Page({
     const format = (num) => num.toString().padStart(2, '0');
     return `${format(hours)}:${format(minutes)}:${format(seconds)}`;
   },
-  onLoad() {
-    const timer = setInterval(() => {
-      const tmp = this.data.prepare - 1;
-      if (!tmp) {
-        clearInterval(timer);
-        this.tap();
-      }
-      this.setData({
-        prepare: tmp
-      });
-    }, 1000);
+  calculateCloseDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371000;
+    const meanLat = (lat1 + lat2) / 2 * (Math.PI / 180);
+    const dLat = (lat2 - lat1) * (Math.PI / 180);
+    const dLon = (lon2 - lon1) * (Math.PI / 180);
+    const x = dLon * Math.cos(meanLat) * R;
+    const y = dLat * R;
+    return Math.sqrt(x * x + y * y);
+  },
+  timeStringToSeconds(timeStr) {
+    const parts = timeStr.split(':');
+    const hours = parseInt(parts[0], 10);
+    const minutes = parseInt(parts[1], 10);
+    const seconds = parseInt(parts[2], 10);
+    const totalSeconds = (hours * 3600) + (minutes * 60) + seconds;
+    return totalSeconds;
   }
 })

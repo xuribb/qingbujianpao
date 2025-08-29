@@ -1,1 +1,12 @@
-<map class="map" latitude="{{latitude}}" longitude="{{longitude}}" polyline="{{polyline}}" />
+<map class="map" latitude="{{latitude}}" longitude="{{longitude}}" polyline="{{polyline}}">
+  <view class="info">
+    <view>
+      <view class="data">{{distance}}</view>
+      <view class="intro">公里</view>
+    </view>
+    <view>
+      <view class="data">{{speed}}</view>
+      <view class="intro">平均配速(m/s)</view>
+    </view>
+  </view>
+</map>
